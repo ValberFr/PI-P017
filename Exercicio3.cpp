@@ -25,6 +25,53 @@ public:
     }
 };
 
+struct ItemEstoque {
+    Produto produto;
+    int quantidade;
+};
+
+
+class Estoque {
+private:
+    vector<ItemEstoque> itens;
+
+public:
+
+    void adicionarProduto(const Produto& produto, int quantidade) {
+        for (auto& item : itens) {
+            if (item.produto.getCodigo() == produto.getCodigo()) {
+                item.quantidade += quantidade;
+                return;
+            }
+        }
+        itens.push_back({produto, quantidade});
+    }
+
+    
+    int getQuantidade(const Produto& produto) const {
+        for (const auto& item : itens) {
+            if (item.produto.getCodigo() == produto.getCodigo()) {
+                return item.quantidade;
+            }
+        }
+        return 0;
+    }
+
+    
+    void removerProduto(const Produto& produto, int quantidade) {
+        for (auto& item : itens) {
+            if (item.produto.getCodigo() == produto.getCodigo()) {
+                item.quantidade -= quantidade;
+                if (item.quantidade < 0) {
+                    item.quantidade = 0;
+                }
+                return;
+            }
+        }
+    }
+};
+
+
 int main() {
     Estoque estoque;
     

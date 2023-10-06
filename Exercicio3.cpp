@@ -25,4 +25,44 @@ public:
     }
 };
 
+int main() {
+    Estoque estoque;
+    
+    Produto maca("Maca", 2.5, 101);
+    Produto arroz("Arroz", 10.0, 102);
+    Produto leite("Leite", 4.0, 103);
+    Produto chocolate("Chocolate", 3.0, 104);
 
+    estoque.adicionarProduto(maca, 50);
+    estoque.adicionarProduto(arroz, 30);
+    estoque.adicionarProduto(leite, 20);
+    estoque.adicionarProduto(chocolate, 5);
+
+    CarrinhoDeCompras carrinho(estoque);
+
+    carrinho.adicionarProduto(maca, 3);
+    carrinho.adicionarProduto(arroz, 2);
+    carrinho.adicionarProduto(leite, 1);
+
+    cout << "Valor total da compra: " << carrinho.calcularValorTotal() << endl;
+
+    carrinho.removerProduto(arroz, 1);
+
+    cout << "Valor total apos remoção: " << carrinho.calcularValorTotal() << endl;
+
+    carrinho.esvaziarCarrinho();
+
+    cout << "Valor total apos esvaziar o carrinho: " << carrinho.calcularValorTotal() << endl;
+
+    carrinho.adicionarProduto(chocolate, 10);
+    //cout << "Quantidade de chocolates no carrinho: " << carrinho.getQuantidadeProduto(p4) << endl;
+
+    carrinho.adicionarProduto(maca, 2);
+    carrinho.adicionarProduto(arroz, 3);
+    carrinho.adicionarProduto(leite, 1);
+    carrinho.adicionarProduto(chocolate, 2);
+
+    carrinho.exibirCarrinho();
+
+    return 0;
+}

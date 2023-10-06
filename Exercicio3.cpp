@@ -71,6 +71,28 @@ public:
     }
 };
 
+double calcularValorTotal() const {
+        double total = 0.0;
+        for(const auto& item : itens) {
+            total += item.produto.getPreco() * item.quantidade;
+        }
+        return total;
+    }
+
+    // Esvazia o carrinho
+    void esvaziarCarrinho() {
+        itens.clear();
+    }
+
+    // Exibe os produtos e quantidades no carrinho
+    void exibirCarrinho() const {
+        cout << "Carrinho de Compras:" << endl;
+        for(const auto& item : itens) {
+            cout << "- " << item.produto.getNome() << " (" << item.produto.getPreco() << ") x " << item.quantidade << endl;
+        }
+    }
+};
+
 
 int main() {
     Estoque estoque;
